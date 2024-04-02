@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+</head>
+<body>
+  <button id="gerarButton">Gerar imagem nova</button>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canal = "canal10descontos"; 
+    document.getElementById('gerarButton').addEventListener('click', gerarImagem);
+
+    function gerarImagem() {
+      const dataHoraAtual = new Date().toISOString().replace(/[^\d]/g, ''); 
+      const texto = canal + dataHoraAtual; 
+
+      const imagemBase = new Image();
+      imagemBase.onload = function() {
+        const canvas = document.getElementById('canvas');
+        const contexto = canvas.getContext('2d');
+
+        canvas.width = imagemBase.width;
+        canvas.height = imagemBase.height;
+
+        contexto.drawImage(imagemBase, 0, 0);
+
+        contexto.fillStyle = 'white';
+        contexto.font = '30px Arial';
+
+        const x = canvas.width / 2 - contexto.measureText(texto).width / 2;
+        const y = canvas.height - 20;
+
+        // Adicionar o texto ao canvas
+        contexto.fillText(texto, x, y);
+      };
+      imagemBase.src = 'img.jpg';
+    }
+  </script>
+</body>
+</html>
