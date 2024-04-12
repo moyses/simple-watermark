@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermark JS</title>
 </head>
 <body>
-  <button id="gerarButton">Gerar imagem nova</button>
-  <canvas id="canvas"></canvas>
+    <div style="display:block;">
+      <img class="originalImage" src="img.jpg" alt="" style="max-width: 500px;">
+      <br>
+      <button class="generateButton">Gerar Imagem</button>
+    </div>
 
-  <script>
-    const canal = "canal10descontos"; 
-    document.getElementById('gerarButton').addEventListener('click', gerarImagem);
+    <div style="display:block;">
+      <img class="originalImage" src="img1.jpg" alt="" style="max-width: 500px;">
+      <br>
+      <button class="generateButton">Gerar Imagem</button>
+    </div>
 
-    function gerarImagem() {
-      const dataHoraAtual = new Date().toISOString().replace(/[^\d]/g, ''); 
-      const texto = canal + dataHoraAtual; 
+    <div style="display:block;">
+      <img class="originalImage" src="img2.jpg" alt="" style="max-width: 500px;">
+      <br>
+      <button class="generateButton">Gerar Imagem</button>
+    </div>
 
-      const imagemBase = new Image();
-      imagemBase.onload = function() {
-        const canvas = document.getElementById('canvas');
-        const contexto = canvas.getContext('2d');
+    <div style="display:block;">
+      <img class="originalImage" src="img3.jpg" alt="" style="max-width: 500px;">
+      <br>
+      <button class="generateButton">Gerar Imagem</button>
+    </div>
 
-        canvas.width = imagemBase.width;
-        canvas.height = imagemBase.height;
-
-        contexto.drawImage(imagemBase, 0, 0);
-
-        contexto.fillStyle = 'white';
-        contexto.font = '30px Arial';
-
-        const x = canvas.width / 2 - contexto.measureText(texto).width / 2;
-        const y = canvas.height - 20;
-
-        // Adicionar o texto ao canvas
-        contexto.fillText(texto, x, y);
-      };
-      imagemBase.src = 'img.jpg';
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
